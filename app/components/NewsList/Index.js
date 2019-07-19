@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { View, Text, FlatList } from "react-native";
-
+import { connect } from "react-redux";
 import styles from "./styles";
 import NewsItem from "../NewsItem";
-
+import { getList } from "../../store/actions/NewsAction";
 class NewsList extends Component {
   state = { selected: (new Map(): Map<string, boolean>) };
 
@@ -25,7 +25,13 @@ class NewsList extends Component {
       title={item.title}
     />
   );
+  componentWillMount() {
+    this.props.getList();
+  }
 
+  componentWillReceiveProps(nextProps) {
+    console.log("nextProps", nextProps);
+  }
   render() {
     return (
       <FlatList
@@ -38,4 +44,12 @@ class NewsList extends Component {
   }
 }
 
-export default NewsList;
+const mapStateToProps = state => {
+  const { news } = state;
+  return { news };
+};
+
+export default connect(
+  mapStateToProps,
+  { getList }
+)(NewsList);
