@@ -4,7 +4,7 @@ import logger from "redux-logger";
 import { newsReducer } from "./reducer/NewsReducer.js";
 
 let rootReducer = combineReducers({
-  newsReducer: newsReducer
+  news: newsReducer
 });
 const store = createStore(rootReducer, applyMiddleware(logger, thunk));
 

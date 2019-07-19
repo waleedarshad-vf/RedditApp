@@ -10,8 +10,10 @@ class NewsItem extends React.PureComponent {
     const textColor = this.props.selected ? "red" : "black";
     return (
       <TouchableOpacity onPress={this._onPress}>
-        <View>
-          <Text style={{ color: textColor }}>{this.props.title}</Text>
+        <View style={{ height: 150 }}>
+          <Text style={{ color: textColor }}>
+            {this.props.newsItem.data.id}
+          </Text>
         </View>
       </TouchableOpacity>
     );

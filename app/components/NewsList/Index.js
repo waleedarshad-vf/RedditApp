@@ -20,11 +20,13 @@ class NewsList extends Component {
   _renderItem = ({ item }) => (
     <NewsItem
       id={item.id}
+      newsItem={item}
       onPressItem={this._onPressItem}
       selected={!!this.state.selected.get(item.id)}
       title={item.title}
     />
   );
+
   componentWillMount() {
     this.props.getList();
   }
@@ -32,14 +34,18 @@ class NewsList extends Component {
   componentWillReceiveProps(nextProps) {
     console.log("nextProps", nextProps);
   }
+
   render() {
+    const { news } = this.props;
     return (
-      <FlatList
-        data={this.props.data}
-        extraData={this.state}
-        keyExtractor={this._keyExtractor}
-        renderItem={this._renderItem}
-      />
+      <View>
+        <FlatList
+          data={news.news}
+          extraData={this.state}
+          keyExtractor={this._keyExtractor}
+          renderItem={this._renderItem}
+        />
+      </View>
     );
   }
 }

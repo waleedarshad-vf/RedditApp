@@ -5,15 +5,18 @@ import { NEWS_LIST } from "../types";
 
 export function getList() {
   return dispatch => {
-    let url = `${Config.API_URL}/r/pics/hot.json`;
+    let url = `${Config.API_URL}r/pics/hot.json`;
     axios
       .get(url)
       .then(function(response) {
-        store.dispatch({
+        console.log(response);
+        dispatch({
           type: NEWS_LIST,
-          payload: data
+          payload: response.data.data.children
         });
       })
-      .catch(function(error) {});
+      .catch(function(error) {
+        console.log(error);
+      });
   };
 }
