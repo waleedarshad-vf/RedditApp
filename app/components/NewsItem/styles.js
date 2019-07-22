@@ -26,15 +26,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   title: {
-    padding: 10
+    padding: 10,
+    fontWeight: "bold"
   },
   date: {
     fontSize: 8,
     alignSelf: "flex-end"
-  },
-  author: {
-    borderRadius: 20,
-    height: 20
   }
 });
 

@@ -12,6 +12,15 @@ class NewsItem extends React.PureComponent {
     return moment(d.asMinutes(), "mm").format("mm");
   }
 
+  validUrl(str) {
+    var regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+    if (!regex.test(str)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   render() {
     const { newsItem } = this.props;
     const { data } = newsItem;
@@ -21,40 +30,62 @@ class NewsItem extends React.PureComponent {
         key={data.id}
         style={styles.itemRow}
       >
-        <Image source={{ uri: data.thumbnail }} style={styles.thumbnail} />
+        {this.validUrl(data.thumbnail) ? (
+          <Image source={{ uri: data.thumbnail }} style={styles.thumbnail} />
+        ) : (
+          <Image
+            source={require("../../../assets/post.png")}
+            style={styles.thumbnail}
+          />
+        )}
 
         <View style={styles.itemImg} key={data.id}>
           <Text style={styles.date}>
             {this.timeAgo(data.created)} minute ago
           </Text>
-          <Text style={styles.title} numberOfLines={2}>
+          <Text style={styles.title} numberOfLines={1}>
             {data.title}
           </Text>
 
           <View style={styles.subReddit}>
-            <Text style={styles.author}>
-              {" "}
+            <View>
               <Image
                 source={require("../../../assets/pencil.png")}
-                style={{ width: 15, height: 15, paddingRight: 10 }}
+                style={{
+                  width: 15,
+                  height: 15,
+                  paddingRight: 10,
+                  alignSelf: "flex-start"
+                  // alignSelf: "center"
+                }}
               />
-              {data.author}
-            </Text>
-            <Text>
-              {" "}
+              <Text style={styles.author}>{data.author}</Text>
+            </View>
+
+            <View>
               <Image
                 source={require("../../../assets/like.png")}
-                style={{ width: 15, height: 15, paddingRight: 10 }}
+                style={{
+                  width: 15,
+                  height: 15,
+                  paddingRight: 10,
+                  alignSelf: "center"
+                }}
               />
-              {data.score}
-            </Text>
-            <Text>
+              <Text>{data.score}</Text>
+            </View>
+            <View>
               <Image
                 source={require("../../../assets/comment.png")}
-                style={{ width: 15, height: 15, paddingRight: 10 }}
+                style={{
+                  width: 15,
+                  height: 15,
+                  paddingRight: 10,
+                  alignSelf: "center"
+                }}
               />
-              {data.num_comments}
-            </Text>
+              <Text>{data.num_comments}</Text>
+            </View>
           </View>
         </View>
       </TouchableOpacity>
