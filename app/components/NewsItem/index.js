@@ -32,9 +32,29 @@ class NewsItem extends React.PureComponent {
           </Text>
 
           <View style={styles.subReddit}>
-            <Text>{data.author}</Text>
-            <Text>{data.score}</Text>
-            <Text>{data.num_comments}</Text>
+            <Text style={styles.author}>
+              {" "}
+              <Image
+                source={require("../../../assets/pencil.png")}
+                style={{ width: 15, height: 15, paddingRight: 10 }}
+              />
+              {data.author}
+            </Text>
+            <Text>
+              {" "}
+              <Image
+                source={require("../../../assets/like.png")}
+                style={{ width: 15, height: 15, paddingRight: 10 }}
+              />
+              {data.score}
+            </Text>
+            <Text>
+              <Image
+                source={require("../../../assets/comment.png")}
+                style={{ width: 15, height: 15, paddingRight: 10 }}
+              />
+              {data.num_comments}
+            </Text>
           </View>
         </View>
       </TouchableOpacity>

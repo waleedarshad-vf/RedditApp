@@ -31,6 +31,10 @@ const styles = StyleSheet.create({
   date: {
     fontSize: 8,
     alignSelf: "flex-end"
+  },
+  author: {
+    borderRadius: 20,
+    height: 20
   }
 });
 
