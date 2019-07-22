@@ -19,6 +19,7 @@ class NewsList extends Component {
 
   _renderItem = ({ item }) => (
     <NewsItem
+      key={item.data.id}
       id={item.id}
       newsItem={item}
       onPressItem={this._onPressItem}
@@ -38,7 +39,7 @@ class NewsList extends Component {
   render() {
     const { news } = this.props;
     return (
-      <View>
+      <View style={styles.list}>
         <FlatList
           data={news.news}
           extraData={this.state}
