@@ -7,7 +7,7 @@ import { getList } from "../../store/actions/NewsAction";
 class NewsList extends Component {
   state = { selected: (new Map(): Map<string, boolean>) };
 
-  _keyExtractor = (item, index) => item.id;
+  _keyExtractor = (item, index) => item.data.id;
 
   _onPressItem = (id: string) => {
     this.setState(state => {
@@ -20,7 +20,7 @@ class NewsList extends Component {
   _renderItem = ({ item }) => (
     <NewsItem
       key={item.data.id}
-      id={item.id}
+      id={item.data.id}
       newsItem={item}
       onPressItem={this._onPressItem}
       selected={!!this.state.selected.get(item.id)}

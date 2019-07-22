@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { View, Text, FlatList } from "react-native";
+import { connect } from "react-redux";
 
 import styles from "./styles";
 import NewsList from "../../components/NewsList/Index";
-import AnimatedLoader from "react-native-animated-loader";
+import LottieLoader from "react-native-lottie-loader";
 
 class LandingPage extends Component {
   constructor(props) {
@@ -14,20 +15,19 @@ class LandingPage extends Component {
     const { loading } = this.props;
     return (
       <View style={styles.container}>
-        {loading ? (
-          <AnimatedLoader
-            visible={visible}
-            overlayColor="rgba(255,255,255,0.75)"
-            source={require("./loader.json")}
-            animationStyle={styles.lottie}
-            speed={1}
-          />
-        ) : (
-          <NewsList />
-        )}
+        <LottieLoader visible={loading} />
+        <NewsList />
       </View>
     );
   }
 }
 
-export default LandingPage;
+const mapStateToProps = state => {
+  const { loading } = state.news;
+  return { loading };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(LandingPage);

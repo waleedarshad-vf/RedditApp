@@ -5,8 +5,8 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     justifyContent: "flex-start",
-    width: "100%",
-    backgroundColor: "#cee3f8"
+    width: "100%"
+    // backgroundColor: "#cee3f8"
   }
 });
 

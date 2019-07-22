@@ -18,12 +18,12 @@ class NewsItem extends React.PureComponent {
     return (
       <TouchableOpacity
         onPress={this._onPress}
-        key={this.props.id}
+        key={data.id}
         style={styles.itemRow}
       >
         <Image source={{ uri: data.thumbnail }} style={styles.thumbnail} />
 
-        <View style={styles.itemImg}>
+        <View style={styles.itemImg} key={data.id}>
           <Text style={styles.date}>
             {this.timeAgo(data.created)} minute ago
           </Text>
